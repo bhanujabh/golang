@@ -14,6 +14,18 @@ func getLanguages()(string, string, bool){
 	return "golang", "javascript", true
 }
 
+func processIt(fn func(a int) int){ 
+	// the second int above represents the return value of the function fn
+	fn(1)
+}
+
+// the below function returns a function 
+func processIt2() func(a int) int{
+	return func(a int) int {
+		return 4
+	}
+}
+
 func main(){
 	fmt.Println(getLanguages()) // golang javascript true in one line
 	lang1, lang2, lang3 := getLanguages()
@@ -23,4 +35,13 @@ func main(){
 	fmt.Println(val1, val2) // golang javascript
 	result := add(3, 5) // 8 
 	fmt.Println(result)
+
+	fn := func(a int) int{ // this is an anonymous function
+		return 2;
+	}
+
+	processIt(fn)
+	fn2 := processIt2()
+	fn2(6)
+	
 }
